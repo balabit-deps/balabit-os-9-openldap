@@ -1,3 +1,11 @@
+openldap (2.5.14+dfsg-0ubuntu0.22.04.1) jammy; urgency=medium
+
+  * New upstream version (LP: #2007625).
+    - Several fixes, including memory leaks that affect slapd and
+      certain slapo modules.
+
+ -- Sergio Durigan Junior <sergio.durigan@canonical.com>  Fri, 17 Feb 2023 16:12:43 -0500
+
 openldap (2.5.13+dfsg-0ubuntu0.22.04.1) jammy; urgency=medium
 
   * New upstream version (LP: #1983618).
