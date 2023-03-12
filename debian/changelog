@@ -1,3 +1,15 @@
+openldap (2.5.14+dfsg-0ubuntu0.22.04.2) jammy; urgency=medium
+
+  * Build the passwd/sha2 contrib module with -fno-strict-aliasing to
+    avoid computing an incorrect SHA256 hash with some versions of the
+    compiler (LP: #2000817):
+    - d/t/{control,sha2-contrib}: test to verify the SHA256 hash
+      produced by passwd/sha2
+    - d/rules: set -fno-strict-aliasing only when building the
+      passwd/sha2 contrib module
+
+ -- Andreas Hasenack <andreas@canonical.com>  Sun, 12 Mar 2023 14:11:53 -0300
+
 openldap (2.5.14+dfsg-0ubuntu0.22.04.1) jammy; urgency=medium
 
   * New upstream version (LP: #2007625).
