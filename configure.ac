@@ -25,7 +25,7 @@ dnl ================================================================
 dnl Configure.in for OpenLDAP
 AC_COPYRIGHT([[Copyright 1998-2022 The OpenLDAP Foundation. All rights reserved.
 Restrictions apply, see COPYRIGHT and LICENSE files.]])
-AC_REVISION([$Id: 3943f6265060065483db582e5c7bef14fe934d80 $])
+AC_REVISION([$Id: a4836a8a0218326643db20d8131fc717d1fc3edf $])
 AC_INIT([OpenLDAP],,[https://bugs.openldap.org],,[https://www.openldap.org])
 AC_CONFIG_SRCDIR(build/version.sh)dnl
 dnl ----------------------------------------------------------------
@@ -1009,7 +1009,11 @@ dnl ----------------------------------------------------------------
 AC_CHECK_HEADERS( sys/epoll.h )
 if test "${ac_cv_header_sys_epoll_h}" = yes; then
 	AC_MSG_CHECKING(for epoll system call)
-	AC_RUN_IFELSE([AC_LANG_SOURCE([[int main(int argc, char **argv)
+	AC_RUN_IFELSE([AC_LANG_SOURCE([[#include <stdlib.h>
+#ifdef HAVE_SYS_POLL_H
+#include <sys/epoll.h>
+#endif
+int main(int argc, char **argv)
 {
 	int epfd = epoll_create(256);
 	exit (epfd == -1 ? 1 : 0);
@@ -1232,7 +1236,7 @@ if test $ol_with_tls = openssl || test $ol_with_tls = auto ; then
 [#endif]])],
 					, [AC_MSG_FAILURE([OpenSSL 1.1.1 or newer required])])
 
-		AC_CHECK_LIB(ssl, SSL_export_keying_material_early,
+		AC_CHECK_LIB(ssl, SSL_CTX_set_ciphersuites,
 			[have_openssl=yes], [have_openssl=no],
 			[-lcrypto])
 
@@ -1362,10 +1366,10 @@ case $ol_with_threads in auto | yes | posix)
 		dnl 	pthread_create() in -lpthread (many)
 		dnl 	pthread_create() in -lc_r (FreeBSD)
 		dnl
-		dnl Check pthread (draft4) flags (depreciated)
+		dnl Check pthread (draft4) flags (deprecated)
 		dnl 	pthread_create() with -threads (OSF/1)
 		dnl
-		dnl Check pthread (draft4) libraries (depreciated)
+		dnl Check pthread (draft4) libraries (deprecated)
 		dnl 	pthread_mutex_unlock() in -lpthreads -lmach -lexc -lc_r (OSF/1)
 		dnl 	pthread_mutex_lock() in -lpthreads -lmach -lexc (OSF/1)
 		dnl 	pthread_mutex_trylock() in -lpthreads -lexc (OSF/1)
@@ -1386,7 +1390,7 @@ case $ol_with_threads in auto | yes | posix)
 			ol_link_threads=posix
 			ol_link_pthreads=""
 		fi
-		
+
 dnl		OL_PTHREAD_TRY([-mt],		[ol_cv_pthread_mt])
 		OL_PTHREAD_TRY([-kthread],	[ol_cv_pthread_kthread])
 		OL_PTHREAD_TRY([-pthread],	[ol_cv_pthread_pthread])
@@ -1473,10 +1477,8 @@ pthread_rwlock_t rwlock;
 				dnl save the flags
 				AC_LINK_IFELSE([AC_LANG_PROGRAM([[
 #include <pthread.h>
-#ifndef NULL
-#define NULL (void*)0
-#endif
-]], [[pthread_detach(NULL);]])],[ol_cv_func_pthread_detach=yes],[ol_cv_func_pthread_detach=no])
+pthread_t thread;
+]], [[pthread_detach(thread);]])],[ol_cv_func_pthread_detach=yes],[ol_cv_func_pthread_detach=no])
 			])
 
 			if test $ol_cv_func_pthread_detach = no ; then
@@ -1531,6 +1533,9 @@ dnl			esac
 				AC_CACHE_CHECK([if select yields when using pthreads],
 					ol_cv_pthread_select_yields,[
 				AC_RUN_IFELSE([AC_LANG_SOURCE([[
+#define _XOPEN_SOURCE 500               /* For pthread_setconcurrency() on glibc */
+#include <stdlib.h>
+#include <stdio.h>
 #include <sys/types.h>
 #include <sys/time.h>
 #include <unistd.h>
@@ -1541,8 +1546,12 @@ dnl			esac
 
 static int fildes[2];
 
+#ifdef __STDC__
+static void *task(void *p)
+#else
 static void *task(p)
 	void *p;
+#endif
 {
 	int i;
 	struct timeval tv;
@@ -1566,9 +1575,13 @@ static void *task(p)
 	exit(0); /* if we exit here, the select blocked the whole process */
 }
 
+#ifdef __STDC__
+int main(int argc, char **argv)
+#else
 int main(argc, argv)
 	int argc;
 	char **argv;
+#endif
 {
 	pthread_t t;
 
@@ -3093,7 +3106,7 @@ if test "$ol_enable_argon2" = "yes" ; then
 
 	BUILD_PW_ARGON2=$ol_enable_argon2
 	if test "$ol_enable_argon2" = "yes" ; then
-		SLAPD_DYNAMIC_PWMODS="$SLAPD_DYNAMIC_PWDMODS argon2.la"
+		SLAPD_DYNAMIC_PWMODS="$SLAPD_DYNAMIC_PWMODS argon2.la"
 	fi
 	AC_DEFINE_UNQUOTED(SLAPD_PWMOD_PW_ARGON2,$SLAPD_MOD_DYNAMIC,[define for Argon2 Password hashing module])
 fi

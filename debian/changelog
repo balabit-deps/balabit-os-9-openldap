@@ -1,3 +1,11 @@
+openldap (2.5.15+dfsg-0ubuntu0.22.04.1) jammy; urgency=medium
+
+  * New upstream version (LP: #2027079).
+    - Several fixes, including to asynchronous connections to the OpenLDAP
+      server.
+
+ -- Sergio Durigan Junior <sergio.durigan@canonical.com>  Tue, 11 Jul 2023 15:26:41 -0400
+
 openldap (2.5.14+dfsg-0ubuntu0.22.04.2bb1) jammy; urgency=medium
 
   * Balabit patched version
