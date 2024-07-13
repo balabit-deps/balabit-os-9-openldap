@@ -1,3 +1,16 @@
+openldap (2.5.18+dfsg-0ubuntu0.22.04.1) jammy; urgency=medium
+
+  * New upstream version (LP: #2067745).
+    - Fixed libldap exit handling with OpenSSL3 again (ITS#9952)
+    - Fixed libldap OpenSSL channel binding digest (ITS#10216)
+    - Fixed slapd handling of large uid/gids peercred auth (ITS#10211)
+    - Fixed slapd-meta with dynlist (ITS#10164)
+    - Fixed slapd-meta binds when proxying internal op (ITS#10165)
+    - Fixed slapo-accesslog startup initialization (ITS#10170)
+    - Fixed slapo-dynlist with abandoned operations (ITS#10044)
+
+ -- Sergio Durigan Junior <sergio.durigan@canonical.com>  Fri, 31 May 2024 11:01:55 -0400
+
 openldap (2.5.17+dfsg-0ubuntu0.22.04.1bb1) jammy; urgency=medium
 
   * Balabit patched version
