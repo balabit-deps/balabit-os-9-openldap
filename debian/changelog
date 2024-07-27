@@ -1,3 +1,10 @@
+openldap (2.5.18+dfsg-0ubuntu0.22.04.2) jammy; urgency=medium
+
+  * d/p/remove-extraneous-quote-configure-ac.patch: Remove extraneous
+    quote from configure.ac, fixing loading of back_perl. (LP: #2072976)
+
+ -- Sergio Durigan Junior <sergio.durigan@canonical.com>  Fri, 12 Jul 2024 17:51:23 -0400
+
 openldap (2.5.18+dfsg-0ubuntu0.22.04.1bb1) jammy; urgency=medium
 
   * Balabit patched version
