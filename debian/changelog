@@ -1,3 +1,9 @@
+openldap (2.5.18+dfsg-0ubuntu0.22.04.2bb1) jammy; urgency=medium
+
+  * Balabit patched version
+
+ -- Balabit Platform Team <devnull@dev.null>  Sat, 27 Jul 2024 02:40:06 +0000
+
 openldap (2.5.18+dfsg-0ubuntu0.22.04.2) jammy; urgency=medium
 
   * d/p/remove-extraneous-quote-configure-ac.patch: Remove extraneous
