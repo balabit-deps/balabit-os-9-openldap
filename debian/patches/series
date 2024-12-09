@@ -14,3 +14,4 @@ fix-build-top-mk
 switch-to-lt_dlopenadvise-to-get-RTLD_GLOBAL-set.diff
 set-maintainer-name
 remove-extraneous-quote-configure-ac.patch
+lp2090806-ITS-8047-Fix-TLS-connection-timeout-handling.patch

@@ -1,3 +1,13 @@
+openldap (2.5.18+dfsg-0ubuntu0.22.04.3) jammy; urgency=medium
+
+  * Fixup TIMEOUT and NETWORK_TIMEOUT options so they work correctly
+    when SSL is involved. Before they would never timeout, causing
+    hangs on connection failure. Now they timeout as expected.
+    (LP: #2090806)
+    - d/p/lp2090806-ITS-8047-Fix-TLS-connection-timeout-handling.patch
+
+ -- Matthew Ruffell <matthew.ruffell@canonical.com>  Mon, 09 Dec 2024 15:54:19 +1300
+
 openldap (2.5.18+dfsg-0ubuntu0.22.04.2) jammy; urgency=medium
 
   * d/p/remove-extraneous-quote-configure-ac.patch: Remove extraneous
