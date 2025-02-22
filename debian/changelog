@@ -1,3 +1,9 @@
+openldap (2.5.18+dfsg-0ubuntu0.22.04.3bb1) jammy; urgency=medium
+
+  * Balabit patched version
+
+ -- Balabit Platform Team <devnull@dev.null>  Sat, 22 Feb 2025 03:27:12 +0000
+
 openldap (2.5.18+dfsg-0ubuntu0.22.04.3) jammy; urgency=medium
 
   * Fixup TIMEOUT and NETWORK_TIMEOUT options so they work correctly
