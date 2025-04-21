@@ -1,3 +1,22 @@
+openldap (2.5.19+dfsg-0ubuntu0.22.04.1) jammy; urgency=medium
+
+  * New upstream version (LP: #2085192)
+    - Fixed libldap GnuTLS incompatible pointer type (ITS#10253)
+    - Fixed libldap OpenSSL set_ciphersuite error handling (ITS#10223)
+    - Fixed libldap to check for OpenSSL EVP_Digest* failure (ITS#10224)
+    - Fixed slapd syncrepl assert during refresh at shutdown (ITS#10232)
+    - Fixed slapd-ldap use of multi-precision add for op counters (ITS#10237)
+    - Fixed slapd-mdb idl intersection (ITS#10233)
+    - Fixed slapd-wt idl intersection (ITS#10233)
+    - Fixed slapo-translucent regression with subordinate databases (ITS#10248)
+    - Fixed slapo-translucent regression when requesting attributes (ITS#10272)
+    - Fixed slappw-argon2 defaults to be more secure (ITS#9827)
+  * Dropped:
+    - d/p/remove-extraneous-quote-configure-ac.patch
+      [Applied in upstream release 2.5.19]
+
+ -- Bryce Harrington <bryce@canonical.com>  Mon, 21 Apr 2025 16:42:05 -0700
+
 openldap (2.5.18+dfsg-0ubuntu0.22.04.3) jammy; urgency=medium
 
   * Fixup TIMEOUT and NETWORK_TIMEOUT options so they work correctly
