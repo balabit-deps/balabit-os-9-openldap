@@ -1,3 +1,9 @@
+openldap (2.5.19+dfsg-0ubuntu0.22.04.1bb1) jammy; urgency=medium
+
+  * Balabit patched version
+
+ -- Balabit Platform Team <devnull@dev.null>  Sat, 17 May 2025 02:25:54 +0000
+
 openldap (2.5.19+dfsg-0ubuntu0.22.04.1) jammy; urgency=medium
 
   * New upstream version (LP: #2085192)
